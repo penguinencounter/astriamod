@@ -31,14 +31,13 @@ public class LoadingScreenTimers {
         instance = null;
     }
 
-    public void render(MatrixStack target, Screen inst, int yOffset) {
+    public void render(MatrixStack target, Screen inst, int y) {
         long now = System.currentTimeMillis();
         long s = (now - startTime)/1000;
 
         TextRenderer tr = MinecraftClient.getInstance().textRenderer;
         String timer_text = String.format("Loading... %02d:%02d", s / 60, (s % 60));
         MutableText timer = GradialText.build(Text.literal(timer_text), LOADING_STOP_1, LOADING_STOP_2);
-        int w = tr.getWidth(timer);
-        DrawableHelper.drawTextWithShadow(target, tr, timer, inst.width - w - 2, inst.height - yOffset, 0xffffff);
+        DrawableHelper.drawCenteredText(target, tr, timer, inst.width / 2, y, 0xffffff);
     }
 }

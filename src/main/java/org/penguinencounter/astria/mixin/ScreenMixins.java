@@ -48,7 +48,7 @@ public class ScreenMixins {
         @Inject(method = "render", at = @At("TAIL"))
         private void addon(MatrixStack matrices, int mouseX, int mouseY, float delta, CallbackInfo ci) {
             Screen instance = (Screen) (Object) this;
-            timer.render(matrices, instance, 10);
+            timer.render(matrices, instance, 20);
         }
     }
     @Mixin(DownloadingTerrainScreen.class)
@@ -63,7 +63,7 @@ public class ScreenMixins {
         @Inject(method = "render", at = @At("TAIL"))
         private void addon(MatrixStack matrices, int mouseX, int mouseY, float delta, CallbackInfo ci) {
             Screen instance = (Screen) (Object) this;
-            timer.render(matrices, instance, 10);
+            timer.render(matrices, instance, 20);
         }
     }
     @Mixin(ConnectScreen.class)
@@ -78,7 +78,7 @@ public class ScreenMixins {
         @Inject(method = "render", at = @At("TAIL"))
         private void addon(MatrixStack matrices, int mouseX, int mouseY, float delta, CallbackInfo ci) {
             Screen instance = (Screen) (Object) this;
-            timer.render(matrices, instance, 10);
+            timer.render(matrices, instance, 20);
         }
     }
     @Mixin(ProgressScreen.class)
@@ -93,7 +93,7 @@ public class ScreenMixins {
         @Inject(method = "render", at = @At("TAIL"))
         private void addon(MatrixStack matrices, int mouseX, int mouseY, float delta, CallbackInfo ci) {
             Screen instance = (Screen) (Object) this;
-            timer.render(matrices, instance, 10);
+            timer.render(matrices, instance, 20);
         }
     }
     @Mixin(MessageScreen.class)
@@ -108,7 +108,7 @@ public class ScreenMixins {
         @Inject(method = "render", at = @At("TAIL"))
         private void addon(MatrixStack matrices, int mouseX, int mouseY, float delta, CallbackInfo ci) {
             Screen instance = (Screen) (Object) this;
-            timer.render(matrices, instance, 10);
+            timer.render(matrices, instance, 20);
         }
     }
 
