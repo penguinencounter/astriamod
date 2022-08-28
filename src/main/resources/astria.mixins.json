@@ -1,0 +1,21 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "org.penguinencounter.astria.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+  ],
+  "client": [
+    "ScreenMixins$GameMenuScreenTextAddon",
+    "ScreenMixins$LoadingScreen1Addon",
+    "ScreenMixins$LoadingScreen2Addon",
+    "ScreenMixins$LoadingScreen3Addon",
+    "ScreenMixins$LoadingScreen4Addon",
+    "ScreenMixins$LoadingScreen5Addon",
+    "ScreenMixins$ScreenWatch",
+    "ScreenMixins$TitleScreenTextAddon"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

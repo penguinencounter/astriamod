@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "id": "astria",
+  "version": "${version}",
+  "name": "Astria",
+  "description": "who dat",
+  "authors": [],
+  "contact": {},
+  "license": "MIT",
+  "icon": "assets/astria/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "org.penguinencounter.astria.AstriaClient"
+    ]
+  },
+  "mixins": [
+    "astria.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.14.9",
+    "fabric": "*",
+    "minecraft": "1.19.2"
+  }
+}
