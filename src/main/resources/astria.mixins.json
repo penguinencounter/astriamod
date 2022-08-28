@@ -7,12 +7,6 @@
   ],
   "client": [
     "ScreenMixins$GameMenuScreenTextAddon",
-    "ScreenMixins$LoadingScreen1Addon",
-    "ScreenMixins$LoadingScreen2Addon",
-    "ScreenMixins$LoadingScreen3Addon",
-    "ScreenMixins$LoadingScreen4Addon",
-    "ScreenMixins$LoadingScreen5Addon",
-    "ScreenMixins$ScreenWatch",
     "ScreenMixins$TitleScreenTextAddon"
   ],
   "injectors": {
