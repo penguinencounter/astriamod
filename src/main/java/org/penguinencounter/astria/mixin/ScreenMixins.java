@@ -4,7 +4,8 @@ import net.minecraft.client.gui.screen.GameMenuScreen;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.TitleScreen;
 import net.minecraft.client.util.math.MatrixStack;
-import org.penguinencounter.astria.AstriaClient;
+import org.penguinencounter.astria.api.ComponentRegistry;
+import org.penguinencounter.astria.base.AstriaBaseComponent;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -19,7 +20,9 @@ public class ScreenMixins {
         )
         private void addon(MatrixStack matrices, int mouseX, int mouseY, float delta, CallbackInfo ci) {
             Screen instance = (Screen) (Object) this;
-            AstriaClient.instance.titleScreenAdditions(matrices, instance);
+            AstriaBaseComponent cpnt = ComponentRegistry.getInstance(AstriaBaseComponent.ID, AstriaBaseComponent.class);
+            if (cpnt == null) return;
+            cpnt.additions(matrices, instance);
         }
     }
 
@@ -31,7 +34,9 @@ public class ScreenMixins {
         )
         private void addon(MatrixStack matrices, int mouseX, int mouseY, float delta, CallbackInfo ci) {
             Screen instance = (Screen) (Object) this;
-            AstriaClient.instance.pauseScreenAdditions(matrices, instance);
+            AstriaBaseComponent cpnt = ComponentRegistry.getInstance(AstriaBaseComponent.ID, AstriaBaseComponent.class);
+            if (cpnt == null) return;
+            cpnt.additions(matrices, instance);
         }
     }
 }
