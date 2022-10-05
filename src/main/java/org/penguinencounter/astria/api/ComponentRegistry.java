@@ -34,6 +34,7 @@ public class ComponentRegistry {
     public static void register(Identifier name, Component component, boolean initEnabled) {
         components.put(name, component);
         component.setEnabled(inherentState.getOrDefault(name, initEnabled));
+        AstriaClient.LOGGER.info("Registered component " + name);
         writeState();
     }
     public static void register(Identifier name, Component component) {

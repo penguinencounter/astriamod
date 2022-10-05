@@ -11,40 +11,23 @@ import net.minecraft.util.Identifier;
 import org.penguinencounter.astria.GradialText;
 import org.penguinencounter.astria.api.Component;
 import org.penguinencounter.astria.api.ComponentRegistry;
+import org.penguinencounter.astria.api.ComponentSwitchBase;
 
 import static org.penguinencounter.astria.AstriaClient.VERSION;
 
-public class AstriaBaseComponent implements Component {
-    private boolean state;
-
+public class AstriaBaseComponent extends ComponentSwitchBase {
     public static final Identifier ID = Identifier.of("astria", "base");
 
     public static GradialText.GradientStop ASTRAL_STOP_1 = new GradialText.GradientStop(0x8000ff, 0);
     public static GradialText.GradientStop ASTRAL_STOP_2 = new GradialText.GradientStop(0x00ff80, 1);
     public static MutableText astralText = GradialText.build(Text.literal("Astria v" + VERSION), ASTRAL_STOP_1, ASTRAL_STOP_2);
 
-    static {
+    public static void register() {
         ComponentRegistry.register(ID, new AstriaBaseComponent(), true);
     }
 
-    @Override
-    public void enable() {
-        state = true;
-    }
-
-    @Override
-    public void disable() {
-        state = false;
-    }
-
-    @Override
-    public void setEnabled(boolean enabled) {
-        state = enabled;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return state;
+    public static void invalidateVersionText() {
+        astralText = GradialText.build(Text.literal("Astria v" + VERSION), ASTRAL_STOP_1, ASTRAL_STOP_2);
     }
 
     private void renderText(MatrixStack target, MutableText content, Screen inst, int yOffset) {
