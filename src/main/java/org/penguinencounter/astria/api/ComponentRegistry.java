@@ -51,6 +51,7 @@ public class ComponentRegistry {
 
     public static void writeState() {
         Map<Identifier, Boolean> stateList = buildStateList();
+        AstriaClient.LOGGER.info("Saving...");
         // Write state to <GAME DIRECTORY>/config/astria/components.json
         File astriaConfigDir = FabricLoader.getInstance().getConfigDir().resolve("astria").toFile();
         if (astriaConfigDir.mkdir()) AstriaClient.LOGGER.info("Created Astria config directory");
@@ -66,6 +67,7 @@ public class ComponentRegistry {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        AstriaClient.LOGGER.info("Done!");
     }
 
     private static void transfer() {

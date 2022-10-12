@@ -5,6 +5,7 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.loader.api.FabricLoader;
 import org.penguinencounter.astria.api.ComponentRegistry;
+import org.penguinencounter.astria.api.Dynamo;
 import org.penguinencounter.astria.base.AstriaBaseComponent;
 import org.penguinencounter.astria.base.ComponentManagerComponent;
 import org.slf4j.Logger;
@@ -16,13 +17,19 @@ public class AstriaClient implements ClientModInitializer {
     public static final Logger LOGGER = LoggerFactory.getLogger("Astria Client");
     public static AstriaClient instance = null;
 
+    private static Thread initializerThread = null;
+
+    private void registration() {
+        ComponentManagerComponent.register();
+        AstriaBaseComponent.register();
+    }
+
     @Override
     public void onInitializeClient() {
         // good luck!
+        initializerThread = Thread.currentThread();
         instance = this;
-
-        AstriaBaseComponent.register();
-        ComponentManagerComponent.register();
+        Dynamo.enqueueTask(this::registration);
 
         // Find this mod's version
         FabricLoader.getInstance().getModContainer("astria").ifPresent(modContainer -> {
@@ -32,5 +39,15 @@ public class AstriaClient implements ClientModInitializer {
         });
         ComponentRegistry.readState();
         LOGGER.info("Astria Client v" + VERSION + " init");
+        Dynamo.lock();
+        LOGGER.info("Astria Client: Dynamo loading " + Dynamo.tasks.size() + " tasks");
+        for (Runnable task : Dynamo.tasks) {
+            task.run();
+        }
+        Dynamo.tasks.clear();
+    }
+
+    public static Thread getInitializerThread() {
+        return initializerThread;
     }
 }
