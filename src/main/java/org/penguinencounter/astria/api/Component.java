@@ -11,4 +11,6 @@ public interface Component {
     void setEnabled(boolean enabled);
 
     boolean isEnabled();
+
+    default void initializer() {}
 }

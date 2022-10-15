@@ -30,6 +30,8 @@ public class AstriaClient implements ClientModInitializer {
         initializerThread = Thread.currentThread();
         instance = this;
         Dynamo.enqueueTask(this::registration);
+        Dynamo.enqueueTask(ComponentRegistry::readState);
+        Dynamo.enqueueTask(ComponentRegistry::cueInitialization);
 
         // Find this mod's version
         FabricLoader.getInstance().getModContainer("astria").ifPresent(modContainer -> {
@@ -37,7 +39,6 @@ public class AstriaClient implements ClientModInitializer {
             if (VERSION.equals("${version}")) VERSION = "(development)";
             AstriaBaseComponent.invalidateVersionText();
         });
-        ComponentRegistry.readState();
         LOGGER.info("Astria Client v" + VERSION + " init");
         Dynamo.lock();
         LOGGER.info("Astria Client: Dynamo loading " + Dynamo.tasks.size() + " tasks");

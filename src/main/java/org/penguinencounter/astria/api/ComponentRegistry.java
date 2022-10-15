@@ -111,4 +111,10 @@ public class ComponentRegistry {
 
         transfer();
     }
+
+    public static void cueInitialization() {
+        for (Component component : components.values()) {
+            component.initializer();
+        }
+    }
 }
