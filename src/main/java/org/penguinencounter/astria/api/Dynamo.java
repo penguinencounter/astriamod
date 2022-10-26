@@ -11,7 +11,6 @@ import java.util.List;
  */
 public class Dynamo {
     private static final Logger LOGGER = AstriaClient.LOGGER;
-
     public static List<Runnable> tasks = new ArrayList<>();
     private static boolean running = true;
 
